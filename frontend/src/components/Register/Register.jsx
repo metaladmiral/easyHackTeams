@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import axios from "axios";
-import toast from "react-hot-toast"
+import { toast } from "react-hot-toast";
+import { Navigate } from 'react-router-dom';
 
-
-
+//hhh
 const Register = () => {
     const[name,setName]=React.useState("");
     const[email,setEmail]=React.useState("");
     const[skills,setSkills]=React.useState("");
     const[password,setPassword]=React.useState("");
-    
+    const[register,setRegister]=React.useState("");
 
     const onSubmit = async (e) => {
       e.preventDefault();
@@ -32,14 +32,18 @@ const Register = () => {
         // Handle the response data here (e.g., show success message, redirect user, etc.)
         console.log(response.data);
         toast.success('Registration successful!');
+        setRegister(true);
       } catch (error) {
         // Handle any errors that occur during the request
         console.log('Error:', error);
         toast.error('Registration failed. Please try again.');
+        setRegister(false)
       }
     };
 
-
+if(register){
+  return <Navigate to={"/login"} />
+}
   return (
     <div>
         <form onSubmit={onSubmit} style={styles.form}>

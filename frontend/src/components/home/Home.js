@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../..';
+import { Navigate } from 'react-router-dom';
 
 const Home = () => {
+  const {isAuthenticated}=useContext(Context)
+
+  if(!isAuthenticated){
+    return <Navigate to={"/login"} />
+  }
   return (
     <div style={styles.container}>
       <h1>Welcome to Our Website</h1>
